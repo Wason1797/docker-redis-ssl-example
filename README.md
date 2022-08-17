@@ -1,23 +1,19 @@
 ## docker redis v6 / v7 with ssl example
 
-```
+```bash
 # optionally create some new self signed certs
 cd redis
 bash gen-redis-cert.sh
 cd ../
 
 # using the base image layer in the redis/tls cert directory
-docker build -t example/redis:v7.0.4 -f ./redis/Dockerfile ./
+docker-compose up --build
 
-# start redis with ssl see: docker-redis-entrypoint.sh
-docker-compose up
 ```
 
+Also see:
 
-Also see: 
-
-- https://redis.io/docs/manual/security/encryption/
-
+- <https://redis.io/docs/manual/security/encryption/>
 
 If you receive an error:
 
@@ -25,10 +21,9 @@ If you receive an error:
 
 Run the `gen-redis-cert.sh` script as outlined above, and rebuild the container.
 
-
 ### connecting with TLS enabled
 
-```
+```bash
 
 redis-cli --tls --cert ./redis/tls/redis.crt \
 --key ./redis/tls/redis.key \
@@ -38,4 +33,11 @@ redis-cli --tls --cert ./redis/tls/redis.crt \
 # Server
 redis_version:7.0.4
 ...
+```
+
+### Using python aioredis and tls
+
+```bash
+pip3 install aioredis
+python3 aioredis_example.py
 ```
