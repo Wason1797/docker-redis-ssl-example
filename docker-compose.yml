@@ -1,15 +1,12 @@
-version: "3"
-
-volumes:
-  redis:
+version: "3.8"
 
 services:
   redis:
-    image: "example/redis:v7.0.4"
-    command: ["/app/docker-redis-entrypoint.sh"]
-    container_name: redis
+    build:
+      context: "./redis"
+      dockerfile: "Dockerfile"
+    container_name: redis_tls
+    env_file: './.env'
     ports:
       - 6379:6379
-    volumes:
-      - redis:/data
-      - ./:/app
+  
