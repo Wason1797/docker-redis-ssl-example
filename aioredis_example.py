@@ -1,17 +1,17 @@
 import asyncio
 
-from aioredis import from_url
+import redis.asyncio as aioredis
 
 from time import perf_counter
 
 
 async def main():
-    redis = from_url(url='rediss://localhost', decode_responses=True, ssl_keyfile='./redis/tls/client.key',
-                     ssl_certfile='./redis/tls/client.crt', ssl_ca_certs='./redis/tls/ca.crt',
-                     password='password')
+    redis = aioredis.from_url(url='rediss://localhost', decode_responses=True, ssl_keyfile='./redis/tls/client.key',
+                              ssl_certfile='./redis/tls/client.crt', ssl_ca_certs='./redis/tls/ca.crt',
+                              password='password')
 
     start = perf_counter()
-    size = 100000
+    size = 1000
 
     async with redis.client() as client:
 
