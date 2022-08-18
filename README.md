@@ -38,6 +38,6 @@ redis_version:7.0.4
 ### Using python aioredis and tls
 
 ```bash
-pip3 install aioredis
+pip3 install "redis[hiredis]"
 python3 aioredis_example.py
 ```
